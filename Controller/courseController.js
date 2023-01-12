@@ -40,14 +40,13 @@ const deleteCourse = async (req,res)=>{
 const updateCourse = async (req,res)=>{
     
     let id = req.params.id;
-    // const me = await Course.findOne({where : {courseName :"Node JS" }})
-    // await me.set({
-    //     courseName : "Sciense",
-    //     duration : "2 Hours",
-    //     fee: 2000
-    // })
-    // await me.save();
-    const course = await Course.update(req.body, {where : {id : id}})
+    
+    const information = {
+        courseName: req.body.name,
+        courseDuration: req.body.duration,
+        courseFee: req.body.fee
+    }
+    const course = await Course.update(information, {where : {id : id}})
     res.status(200).send(course);
 
 }
