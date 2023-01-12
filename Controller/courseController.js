@@ -13,14 +13,16 @@ const addCourse = async (req,res)=>{
     }
 
     const course = await Course.create(information)
-    res.status(200).send(course)
+    // res.status(200).send(course)
+    res.render("course", {course: course});
 }
 // Get all course
 
 const getAllCourse = async (req,res)=>{
 
     const courses = await Course.findAll({})
-    res.status(200).send(courses);
+    // res.status(200).send(courses);
+    res.render('course',{course : courses});
 
 }
 
@@ -48,6 +50,7 @@ const updateCourse = async (req,res)=>{
     }
     const course = await Course.update(information, {where : {id : id}})
     res.status(200).send(course);
+    
 
 }
 
