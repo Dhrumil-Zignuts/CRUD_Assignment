@@ -21,12 +21,11 @@
 
     <!-- CSS File -->
     <link rel="stylesheet" href="/assets/style.css">
-    
-    
+
+
     <!-- jquery Link -->
-    <!-- <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"
+        integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -36,7 +35,7 @@
                 <div class="navbar-div " style="align-items: initial;">
                     <a class="navbar-brand fs-2 text-white">Course Management</a>
                     <div class="d-flex button-div justify-content-center addCourse">
-                        <button class="btn text-white" type="submit" data-bs-target="#exampleModalToggle"
+                        <button class="btn text-white add-course" type="submit" data-bs-target="#exampleModalToggle"
                             data-bs-toggle="modal">Add Courses</button>
                     </div>
                 </div>
@@ -47,104 +46,196 @@
                     <div class="modal-content">
                         <div class="modal-body">
                             <div class="heading mb-3">
-                                <h1 class="modal-title fs-3" id="exampleModalToggleLabel">Add Course here</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                <h1 class="modal-title fs-3" id="exampleModalToggleLabel"></h1>
+                                <button type="button" id="close-btn" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <form id="form"> 
+                            <form id="form">
                                 <div class="mb-1">
                                     <label for="recipient-name" class="col-form-label">Course name:</label>
-                                    <input type="text" class="form-control" id="course-name" placeholder="text">
+                                    <input type="text" class="form-control" id="course-name" placeholder="text"
+                                        value="">
                                 </div>
                                 <div class="mb-1">
                                     <label for="recipient-name" class="col-form-label">Course Duration:</label>
-                                    <input type="text" class="form-control" id="course-duration" placeholder="text">
+                                    <input type="text" class="form-control" id="course-duration" placeholder="text"
+                                        value="">
                                 </div>
                                 <div class="mb-1">
                                     <label for="recipient-name" class="col-form-label">Course Fee:</label>
-                                    <input type="number" class="form-control" id="course-fee" placeholder="number">
+                                    <input type="number" class="form-control" id="course-fee" placeholder="number"
+                                        value="">
                                 </div>
-                                <button class="btn text-white mt-3" style="background-color: #1eb2a6;"
-                                    type="submit">Submit</button>
+                                <div class="addCourseDiv">
+                                    <button class="btn text-white mt-3 submit-add-btn" style="background-color: #1eb2a6;" type="submit">Add Course</button>
+                                </div>
+                                <div class="editCourseDiv">
+                                    <button class="btn text-white mt-3 submit-edit-btn" style="background-color: #1eb2a6;" type="submit">Edit Course</button>
+                                </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="allCourses">
-                <% for(let i = 0; i < course.length; i++) {%>
-                <div class="card mb-3" style="padding: 0px;">
-                    <div class="card-body d-flex" style="align-items: center; justify-content: space-between;">
-                        <div class="course-info">
-                            <h5 class="card-title"><%= course[i].courseName %></h5>
-                            <p class="card-text" style="font-size: 16px; margin-bottom: 0px; color: #01524b66;"><%= course[i].courseDuration %>
-                            </p>
-                            <p class="card-text" style="font-size: 12px; margin-bottom: 0px; color: #01524b66;">₹ <%= course[i].courseFee %>
-                            </p>
-                        </div>
-                        <div class="btns">
-                            <button class="btn edit-btn" style="background-color: #61d1c8; color: white; font-size: 20px;" data-bs-target="#exampleModalToggle"
-                            data-bs-toggle="modal"><i
-                                    class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="btn delete-btn" Style="background-color: red; color: white; font-size: 20px;" value="<%= course[i].id %>"><i
-                                    class="fa-regular fa-trash-can"></i></button>
+                <% for(let i=0; i < course.length; i++) {%>
+                    <div class="card mb-3" style="padding: 0px;">
+                        <div class="card-body d-flex" style="align-items: center; justify-content: space-between;">
+                            <div class="course-info">
+                                <h5 class="card-title">
+                                    <%= course[i].courseName %>
+                                </h5>
+                                <p class="card-text" style="font-size: 16px; margin-bottom: 0px; color: #01524b66;">
+                                    <%= course[i].courseDuration %>
+                                </p>
+                                <p class="card-text" style="font-size: 12px; margin-bottom: 0px; color: #01524b66;">₹
+                                    <%= course[i].courseFee %>
+                                </p>
+                            </div>
+                            <div class="btns">
+                                <button class="btn edit-btn"
+                                    style="background-color: #61d1c8; color: white; font-size: 20px;"
+                                    value="<%= course[i].id %>"><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button class="btn delete-btn"
+                                    Style="background-color: red; color: white; font-size: 20px;"
+                                    value="<%= course[i].id %>"><i class="fa-regular fa-trash-can"></i></button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <%} %>
+                    <%} %>
             </div>
         </div>
     </div>
     <script>
-        $(document).ready(function(){
-           $('#form').on('submit', function(){
-                let name = $('#course-name').val();
-                let duration = $('#course-duration').val();
-                let fee = $('#course-fee').val();
+        $(document).ready(function () {
+            // check class on Add Course
+            $('.add-course').on('click', function(){
+                if($('.addCourseDiv').css('display') == 'none'){
+                    $('#exampleModalToggleLabel').text('Add Course Here');
+                    $('.addCourseDiv').css('display','block');
+                    $('.editCourseDiv').css('display','none');
+                }else{
+                    $('#exampleModalToggleLabel').text('Add Course Here');
+                    $('.editCourseDiv').css('display','none');
+                    $('.addCourseDiv').css('display','block');
+                }
+            })
 
-                let data = {name : name, duration : duration, fee : fee};
+            // Add Courses  Request
+            $('.submit-add-btn').on('click', function () {
+                const name = $('#course-name').val();
+                const duration = $('#course-duration').val();
+                const fee = $('#course-fee').val();
+
+                const data = { name: name, duration: duration, fee: fee };
                 console.log(data);
 
                 $.ajax({
                     type: 'POST',
                     url: '/api/courses/addCourse',
                     data: data,
-                    success : function(data){
+                    success: function (data) {
                         // console.log(data);
                         location.reload();
-                }
+                    }
 
+                })
+                return false;
             })
-             return false;
-           })
-           $('.delete-btn').on('click', function(course){
+
+            //    Delete Request
+            $('.delete-btn').on('click', function (course) {
                 // console.log(course);
-                let id = $(this).val();
+                const id = $(this).val();
                 console.log(id);
 
                 $.ajax({
                     type: 'DELETE',
                     url: `/api/courses/${id}`,
-                    data : id,
-                    success : function(data){
+                    data: id,
+                    success: function (data) {
                         location.href = 'getAllCourses';
                     }
                 })
-           })
-           $('.edit-btn').on('click', function(course){
-                $('#exampleModalToggle').model()
-                let id = $(this).val();
-                console.log(id);
-                
-                
-            
-           })
-        })
+            })
+
+            // Edit request
+            $('.edit-btn').on('click', function (course) {
+
+                if($('.editCourseDiv').css('display') == 'none'){
+                    $('#exampleModalToggleLabel').text('Edit Course Here');
+                    $('.editCourseDiv').css('display','block');
+                    $('.addCourseDiv').css('display','none');
+                }else{
+                    $('#exampleModalToggleLabel').text('Edit Course Here');
+                    $('.editCourseDiv').css('display','block');
+                    $('.addCourseDiv').css('display','none');
+                }
+                // take id of Perticular course
+                const id = $(this).val();
+
+                // Show the Modal
+                $('#exampleModalToggle').modal('show');
+
+                const oneCourse = getData(id);
+                console.log(oneCourse);
+
+                // Put the value is Get Course
+                $('#course-name').val(oneCourse.name);
+                $('#course-duration').val(oneCourse.duration);
+                $('#course-fee').val(oneCourse.fee);
+
+                // Edit the Form Data
+                $('.submit-edit-btn').on('click', function () {
+                    const nameE = $('#course-name').val();
+                    const durationE = $('#course-duration').val();
+                    const feeE = $('#course-fee').val();
+
+                    const dataE = { name: nameE, duration: durationE, fee: feeE };
+                    console.log(`The Edited Data is ${dataE}`);
+
+                    $.ajax({
+                        type: 'PUT',
+                        url: `/api/courses/${id}`,
+                        data: dataE,
+                        success: function (data) {
+                            // console.log(data);
+                            location.href= 'getAllCourses';
+                            // location.reload();
+                        }
+
+                    })
+                })
+            });
+
+            $('#close-btn').on('click', function(){
+                location.reload();
+            })
+
+            const getData = function (id) {
+                    const name = '';
+                    const duration = '';
+                    const fee = 0;
+                    let data;
+
+                    $.ajax({
+                        type: 'GET',
+                        url: `/api/courses/${id}`,
+                        async: false,
+                        success: function (course) {
+                            data = {
+                                name: course.courseName,
+                                duration: course.courseDuration,
+                                fee: course.courseFee,
+                            }
+                            console.log(`This is a success Data : ${JSON.stringify(data)}`);
+                        }
+                    });
+                    console.log(`This is a OutSide the Function Data :${JSON.stringify(data)}`);
+                    return data;
+                }
+        })   
     </script>
 </body>
 
 </html>
-
-
-
-<!-- <i class="fa-solid fa-graduation-cap"></i> -->

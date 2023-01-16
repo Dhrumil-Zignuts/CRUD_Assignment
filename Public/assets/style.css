@@ -65,3 +65,9 @@
         margin: auto;
     }
 }
+.addCourseDiv{
+    display: none;
+}
+.editCourseDiv{
+    display: none;
+}

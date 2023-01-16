@@ -37,11 +37,16 @@ const deleteCourse = async (req,res)=>{
     })
 }
 
-
+const getOneCourse = async (req,res)=>{
+    const id = req.params.id;
+    const  course = await Course.findOne({where: {id : id}})
+    res.status(200).send(course);
+}
 // Update the Course
 const updateCourse = async (req,res)=>{
-    
     let id = req.params.id;
+    console.log(req.body);
+    console.log(id);
     
     const information = {
         courseName: req.body.name,
@@ -58,5 +63,6 @@ module.exports = {
     addCourse,
     getAllCourse,
     updateCourse,
-    deleteCourse
+    deleteCourse,
+    getOneCourse
 }
