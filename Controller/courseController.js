@@ -13,11 +13,10 @@ const addCourse = async (req,res)=>{
     }
 
     const course = await Course.create(information)
-    // res.status(200).send(course)
     res.render("course", {course: course});
 }
-// Get all course
 
+// Get all course
 const getAllCourse = async (req,res)=>{
 
     const courses = await Course.findAll({})
@@ -36,7 +35,7 @@ const deleteCourse = async (req,res)=>{
         res.status(200).send('Course is deleted..!')
     })
 }
-
+// Get One Course From ID
 const getOneCourse = async (req,res)=>{
     const id = req.params.id;
     const  course = await Course.findOne({where: {id : id}})

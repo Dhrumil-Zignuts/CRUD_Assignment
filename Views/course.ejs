@@ -121,7 +121,7 @@
                 }
             })
 
-            // Add Courses  Request
+            // Add Courses Request
             $('.submit-add-btn').on('click', function () {
                 const name = $('#course-name').val();
                 const duration = $('#course-duration').val();
@@ -145,7 +145,6 @@
 
             //    Delete Request
             $('.delete-btn').on('click', function (course) {
-                // console.log(course);
                 const id = $(this).val();
                 console.log(id);
 
@@ -174,18 +173,18 @@
                 // take id of Perticular course
                 const id = $(this).val();
 
-                // Show the Modal
+                // Show(Open) the Modal
                 $('#exampleModalToggle').modal('show');
 
                 const oneCourse = getData(id);
                 console.log(oneCourse);
 
-                // Put the value is Get Course
+                // Put the value in form which are getOne by backend
                 $('#course-name').val(oneCourse.name);
                 $('#course-duration').val(oneCourse.duration);
                 $('#course-fee').val(oneCourse.fee);
 
-                // Edit the Form Data
+                // Edit the Form Data and submit the request
                 $('.submit-edit-btn').on('click', function () {
                     const nameE = $('#course-name').val();
                     const durationE = $('#course-duration').val();
@@ -199,19 +198,19 @@
                         url: `/api/courses/${id}`,
                         data: dataE,
                         success: function (data) {
-                            // console.log(data);
                             location.href= 'getAllCourses';
-                            // location.reload();
                         }
 
                     })
                 })
             });
 
+            // reload the page after close the form without editing
             $('#close-btn').on('click', function(){
                 location.reload();
             })
 
+            // Get data Function for Get the data of perticuler Course from DataBase
             const getData = function (id) {
                     const name = '';
                     const duration = '';
